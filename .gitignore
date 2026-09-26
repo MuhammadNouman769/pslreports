@@ -29,7 +29,7 @@ venv/
 *.pyc
 *.pyo
 *.pyd
-
+db.sqlite3
 # Ignore database files? (comment out if you want to push)
 # *.sqlite3
 
