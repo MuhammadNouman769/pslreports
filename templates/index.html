@@ -121,76 +121,55 @@
     </section>
     <!-- End Banner Area -->
 
-    <!-- Start Trending News Area -->
+        <!-- Start Trending News Area -->
     <section class="eblog-trending-news-area tp-section-gap">
         <div class="container">
             <div class="section-title-area">
                 <h3 class="section-title text-center">Trending Now</h3>
             </div>
             <div class="section-inner">
-                <div class="swiper tp-trendingSlider">
+                                <div class="swiper tp-trendingSlider">
                     <div class="swiper-wrapper">
+                        {% for story in trending_stories %}
                         <div class="swiper-slide">
                             <div class="trending-news-wrapper">
                                 <div class="image-area">
-                                    <a href="#">
-                                        <img src="{% static 'img/blog/01.jpg' %}" alt="">
+                                    <a href="{% url 'blog_detail' slug=story.slug %}">
+                                        {% if story.image %}
+                                        <img src="{{ story.image.url }}" alt="{{ story.title }}">
+                                        {% else %}
+                                        <img src="{% static 'img/blog/01.jpg' %}" alt="{{ story.title }}">
+                                        {% endif %}
                                     </a>
                                 </div>
                                 <div class="content-area">
                                     <ul class="blog-meta">
-                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
+                                        <li class="author">
+                                            <span>BY</span>
+                                            {% if story.author.first_name %}
+                                                {{ story.author.first_name }} {{ story.author.last_name }}
+                                            {% else %}
+                                                {{ story.author.username }}
+                                            {% endif %}
+                                            {% if story.published_at %}
+                                                - {{ story.published_at|date:"d M, Y" }}
+                                            {% endif %}
+                                        </li>
                                     </ul>
-                                    <h6 class="title"><a href="#" class="title-animation">Women in AI: Anna Korhonen studies the intersection</a></h6>
+                                    <h6 class="title">
+                                        <a href="{% url 'blog_detail' slug=story.slug %}" class="title-animation">
+                                            {{ story.title|truncatewords:7 }}
+                                        </a>
+                                    </h6>
                                 </div>
                             </div>
                         </div>
-                        <div class="swiper-slide">
-                            <div class="trending-news-wrapper">
-                                <div class="image-area">
-                                    <a href="#">
-                                        <img src="{% static 'img/blog/02.jpg' %}" alt="">
-                                    </a>
-                                </div>
-                                <div class="content-area">
-                                    <ul class="blog-meta">
-                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                    </ul>
-                                    <h6 class="title"><a href="#" class="title-animation">EU could approve Apple’s ‘tap and go’ payment proposal in</a></h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="trending-news-wrapper">
-                                <div class="image-area">
-                                    <a href="#">
-                                        <img src="{% static 'img/blog/03.jpg' %}" alt="">
-                                    </a>
-                                </div>
-                                <div class="content-area">
-                                    <ul class="blog-meta">
-                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                    </ul>
-                                    <h6 class="title"><a href="#" class="title-animation">Building an Editor by Sharing Code Between Android</a></h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="trending-news-wrapper">
-                                <div class="image-area">
-                                    <a href="#">
-                                        <img src="{% static 'img/blog/04.jpg' %}" alt="">
-                                    </a>
-                                </div>
-                                <div class="content-area">
-                                    <ul class="blog-meta">
-                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                    </ul>
-                                    <h6 class="title"><a href="#" class="title-animation">Google merges Android and Hardware divisions to drive AI </a></h6>
-                                </div>
-                            </div>
-                        </div>
+                        {% empty %}
+                        <p class="text-center">No trending stories right now.</p>
+                        {% endfor %}
                     </div>
+                    <div class="swiper-button-prev tp-trend-prev"></div>
+                    <div class="swiper-button-next tp-trend-next"></div>
                 </div>
                 <div class="swiper-pagination2"></div>
             </div>

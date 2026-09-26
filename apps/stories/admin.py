@@ -49,8 +49,9 @@ class StoryChapterInline(admin.StackedInline):
 # -------------------------
 @admin.register(Story)
 class StoryAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'status', 'published_at', 'views_count', 'likes_count')
-    list_filter = ('status', 'author', 'published_at')
+
+    list_display = ('title', 'author', 'status', 'post_type', 'published_at', 'views_count', 'likes_count')
+    list_filter = ('status', 'post_type', 'author', 'published_at')
     search_fields = ('title', 'content', 'author__username')
     prepopulated_fields = {"slug": ("title",)}
     inlines = [StoryChapterInline]  # Add inline chapters

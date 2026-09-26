@@ -34,6 +34,10 @@
               el: ".swiper-pagination2",
               clickable:"true",
             },
+            navigation: {
+            nextEl: ".tp-trend-next",
+            prevEl: ".tp-trend-prev",
+            },
             breakpoints:{
               1168:{
                 slidesPerView: 4,

@@ -19,6 +19,10 @@ class Story(CoreModel):
         PUBLISHED = 'published', 'published'
         REJECTED = 'rejected', 'Rejected'
         CANCEL = 'cancel', 'Cancel'
+    class PostType(models.TextChoices):
+        TRENDING = 'trending', 'Trending Now'
+        BANNER = 'banner', 'Banner'
+        NORMAL = 'normal', 'Normal Post'
 
 
     ''' ------- core fields -------- '''
@@ -30,6 +34,7 @@ class Story(CoreModel):
     
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='stories')
     status = models.CharField(max_length=10, choices=StoryStatus.choices,default=StoryStatus.Draft)
+    post_type = models.CharField(max_length=10, choices=PostType.choices, default=PostType.NORMAL)
     tags = models.ManyToManyField("StoryTag", related_name='stories')
     summery = models.TextField(max_length=1000, blank=True, help_text="Brief summery of story")
     published_at = models.DateTimeField(null=True, blank=True)

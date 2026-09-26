@@ -61,18 +61,16 @@ def blog_detail(request, slug):
     return render(request, 'blog-details.html', context=context)
 
 
-
-
-
-
-
-
-
-
-
 def index_view(request):
     """View for the home/index page"""
-    return render(request, 'index.html')
+    trending_stories = Story.objects.filter(
+        status='published',
+        post_type='trending'
+    ).order_by('-published_at')[:10]
+    context = {
+        'trending_stories': trending_stories,
+    }
+    return render(request, 'index.html', context)
 
 
 def author_view(request):
