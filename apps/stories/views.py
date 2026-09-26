@@ -61,18 +61,15 @@ def blog_detail(request, slug):
     return render(request, 'blog-details.html', context=context)
 
 
-
-
-
-
-
-
-
-
-
 def index_view(request):
     """View for the home/index page"""
-    return render(request, 'index.html')
+    banner_stories = Story.objects.filter(
+        status='published'
+    ).select_related('author').prefetch_related('tags').order_by('-created_at')[:3]
+
+    return render(request, 'index.html', {
+        'banner_stories': banner_stories
+    })
 
 
 def author_view(request):
