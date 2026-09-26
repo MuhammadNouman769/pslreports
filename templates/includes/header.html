@@ -1,261 +1,360 @@
 {% load static %}
-<!-- Start Header Area -->
 <style>
-.btn{
-    margin-bottom: -44px;
-}    
-</style>    
-<!-- Start Top Header Area -->
+.eblog-header-area{position:relative;z-index:9999;background:#fff;width:100%}
+.eblog-home-1-menu{width:100%}
+.eblog-site-main-logo-menu-social{width:100%;height:68px;background:#fff}
+.eblog-site-main-logo-menu-social .row{height:68px;align-items:center}
+.eblog-site-logo{display:flex;align-items:center;height:68px}
+.eblog-site-logo a{display:flex;align-items:center;height:100%}
+.eblog-site-logo img{width:auto;height:52px!important;max-width:180px;object-fit:contain;display:block}
+.eblog-site-main-logo-menu-social nav{height:68px;display:flex;align-items:center;justify-content:center}
+.eblog-desktop-menu{margin:0;padding:0;display:flex;align-items:center;justify-content:center;gap:0}
+.eblog-desktop-menu>li{position:relative;list-style:none;margin:0;padding:0}
+.eblog-desktop-menu>li>a{display:flex;align-items:center;height:68px;padding:0 11px;color:#1e1e1e;font-size:14px;font-weight:500;text-decoration:none;white-space:nowrap;transition:.2s}
+.eblog-desktop-menu>li>a:hover,.eblog-desktop-menu>li>a.active{color: #4a7c59}
+.eblog-submenu{position:absolute;top:100%;left:0;min-width:210px;padding:4px 0;margin:0!important;background:#fff;border-radius:4px;box-shadow:0 6px 18px rgba(0,0,0,.12);opacity:0;visibility:hidden;transform:translateY(0);transition:opacity .2s ease,visibility .2s ease;z-index:99999}
+.eblog-has-dropdown:hover>.eblog-submenu{opacity:1;visibility:visible}
+.eblog-submenu li{list-style:none;margin:0;padding:0}
+.eblog-submenu li a{display:block;padding:8px 15px;color:#333;font-size:13px;line-height:1.3;text-decoration:none;transition:.2s}
+.eblog-submenu li a:hover{color:#0ebab1;background:#f7fafa}
+.eblog-header-top-social-media{height:68px;display:flex;align-items:center;justify-content:flex-end;gap:15px}
+.eblog-header-top-search-btn{display:flex;align-items:center;justify-content:center;width:34px;height:34px;text-decoration:none}
+.eblog-header-top-search-btn svg{width:19px;height:19px}
+.eblog-header-top-menu-bar{display:flex;align-items:center;justify-content:center}
+.eblog-header-top-menu-bar a{display:flex;flex-direction:column;justify-content:center;gap:5px;width:30px;height:30px;text-decoration:none}
+.eblog-header-top-menu-bar .line{display:block;height:2px;background:#1e1e1e}
+.eblog-header-top-menu-bar .line.small{width:18px}
+.eblog-header-top-menu-bar .line.big{width:28px}
+.search-input-area{position:fixed;top:0;left:0;width:100%;height:80px;background:#fff;box-shadow:0 5px 20px rgba(0,0,0,.12);z-index:100000;display:none;align-items:center}
+.search-input-area.active{display:flex}
+.search-input-inner{display:flex;align-items:center;gap:10px;width:100%}
+.search-input-inner .input-div{flex:1}
+.search-input{width:100%;height:42px;border:1px solid #ddd;border-radius:5px;padding:0 15px;outline:none;font-size:14px}
+.search-input:focus{border-color:#0ebab1}
+.search-icon-btn{border:0;background:#0ebab1;color:#fff;height:42px;min-width:48px;border-radius:5px;cursor:pointer}
+.search-close-icon{cursor:pointer;font-size:20px;padding:5px}
+#side-bar{position:fixed;top:0;right:-420px;width:400px;max-width:90%;height:100vh;background:#fff;z-index:100001;box-shadow:-5px 0 25px rgba(0,0,0,.15);transition:right .3s ease;overflow-y:auto}
+#side-bar.show{right:0}
+#side-bar .inner{padding:30px}
+.close-icon-menu{border:0;background:transparent;cursor:pointer;font-size:22px;float:right}
+#side-bar .thumbnail{margin-top:35px;margin-bottom:25px}
+#side-bar .thumbnail img{max-width:180px;max-height:55px;object-fit:contain}
+.mobile-menu{margin-top:25px;clear:both}
+.mobile-menu ul{list-style:none;margin:0;padding:0}
+.mobile-menu li{border-bottom:1px solid #eee}
+.mobile-menu li>a.main{display:block;padding:13px 0;color:#222;text-decoration:none;font-size:15px;font-weight:600}
+.mobile-menu .submenu{display:none;padding-left:15px}
+.mobile-menu .submenu li a{display:block;padding:8px 0;color:#555;text-decoration:none;font-size:14px}
+.mobile-menu li.mobile-open>.submenu{display:block}
+.eblog-header-area .btn{margin-bottom:0!important}
+@media(max-width:1199px){
+.eblog-desktop-menu>li>a{padding:0 7px;font-size:13px}
+.eblog-site-logo img{max-width:160px}
+}
+@media(max-width:991px){
+.eblog-site-main-logo-menu-social,.eblog-site-main-logo-menu-social .row,.eblog-site-logo,.eblog-header-top-social-media{height:62px}
+.eblog-site-logo img{height:48px!important;max-width:170px}
+}
+@media(max-width:575px){
+.eblog-site-main-logo-menu-social,.eblog-site-main-logo-menu-social .row,.eblog-site-logo,.eblog-header-top-social-media{height:60px}
+.eblog-site-logo img{height:45px!important;max-width:150px}
+}
+</style>
+
 <header class="eblog-header-area header--sticky">
-    <div class="eblog-home-1-menu">
-        <div class="eblog-site-main-logo-menu-social">
-            <div class="container">
-                <div class="row align-items-center plr_md--30 plr_sm--30 plr--10">
-                    <div class="col-xl-2 col-lg-2 col-md-7 col-sm-7 col-7 p-0">
-                      <div class="eblog-site-logo">
-                        <a class="logo-light" href="{% url 'index' %}">
-                            <img src="{% static 'img/logo/header-logo.png' %}" 
-                                alt="eblog"
-                                style="height: 90px;">
-                        </a>
-                    </div>
-                    </div>
-                    <div class="col-xl-8 col-lg-8 d-none d-lg-block">
-                        <nav>
-                            <div class="eblog-home-1-menu">
-                                <ul class="list-unstyled eblog-desktop-menu">
-                                    <li class="menu-item eblog-has-dropdown">
-                                        <a href="#" class="eblog-dropdown-main-element active">News</a>
-                                        <ul class="eblog-submenu list-unstyled menu-pages">
-                                            <li class="nav-item"><a href="#">Latest News</a></li>
-                                            <li class="nav-item"><a href="#">Transfer News</a></li>
-                                            <li class="nav-item"><a href="#">Match Reports</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item eblog-has-dropdown">
-                                        <a href="#" class="eblog-dropdown-main-element">Fixtures & Results</a>
-                                        <ul class="eblog-submenu list-unstyled menu-pages">
-                                            <li class="nav-item"><a href="#">Today's Matches</a></li>
-                                            <li class="nav-item"><a href="#">Upcoming Fixtures</a></li>
-                                            <li class="nav-item"><a href="#">Past Results</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item eblog-has-dropdown">
-                                        <a href="#" class="eblog-dropdown-main-element">Leagues</a>
-                                        <ul class="eblog-submenu list-unstyled menu-pages">
-                                            <li class="nav-item"><a href="#">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</a></li>
-                                            <li class="nav-item"><a href="#">🇪🇸 La Liga</a></li>
-                                            <li class="nav-item"><a href="#">🇮🇹 Serie A</a></li>
-                                            <li class="nav-item"><a href="#">🇩🇪 Bundesliga</a></li>
-                                            <li class="nav-item"><a href="#">🇫🇷 Ligue 1</a></li>
-                                            <li class="nav-item"><a href="#">🏆 Champions League</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item eblog-has-dropdown">
-                                        <a href="#" class="eblog-dropdown-main-element">Teams</a>
-                                        <ul class="eblog-submenu list-unstyled menu-pages">
-                                            <li class="nav-item"><a href="#">Team List</a></li>
-                                            <li class="nav-item"><a href="#">Team Profiles</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item eblog-has-dropdown">
-                                        <a href="#" class="eblog-dropdown-main-element">Players</a>
-                                        <ul class="eblog-submenu list-unstyled menu-pages">
-                                            <li class="nav-item"><a href="#">Top Players</a></li>
-                                            <li class="nav-item"><a href="#">Player Profiles</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item eblog-has-dropdown">
-                                        <a href="#" class="eblog-dropdown-main-element">About</a>
-                                        <ul class="eblog-submenu list-unstyled menu-pages">
-                                            <li class="nav-item"><a href="#">About Us</a></li>
-                                            <li class="nav-item"><a href="#">Contact</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </nav>
-                    </div>
-                    <div class="col-xl-2 col-lg-2 col-md-5 col-sm-5 col-5 p-0">
-                        <div class="eblog-header-top-social-media">
-                            <a href="#" id="search" class="eblog-header-top-search-btn search-icon action-item icon">
-                                <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M18.1256 16.1458L13.4056 11.7888C14.5398 10.5319 15.1053 8.91973 14.9847 7.28771C14.864 5.65568 14.0663 4.12943 12.7576 3.02647C11.4488 1.9235 9.72983 1.32874 7.95814 1.3659C6.18645 1.40306 4.49849 2.06929 3.2454 3.226C1.9923 4.3827 1.27055 5.94082 1.23029 7.57622C1.19003 9.21162 1.83436 10.7984 3.02924 12.0064C4.22412 13.2145 5.87756 13.9508 7.64558 14.0622C9.41361 14.1736 11.1601 13.6516 12.5218 12.6046L17.2418 16.9616L18.1256 16.1458ZM2.50064 7.73083C2.50064 6.70389 2.83054 5.70001 3.44862 4.84614C4.0667 3.99227 4.94521 3.32676 5.97304 2.93376C7.00088 2.54077 8.13188 2.43795 9.22302 2.63829C10.3142 2.83864 11.3164 3.33316 12.1031 4.05931C12.8898 4.78547 13.4255 5.71065 13.6426 6.71786C13.8596 7.72507 13.7482 8.76907 13.3225 9.71784C12.8967 10.6666 12.1757 11.4775 11.2507 12.0481C10.3257 12.6186 9.23816 12.9231 8.12564 12.9231C6.6343 12.9216 5.20452 12.3741 4.14999 11.4007C3.09545 10.4272 2.50229 9.10745 2.50064 7.73083Z" fill="#1E1E1E" />
-                                </svg>
-                            </a>
-                            <form action="{% url 'story:stories' %}" method="get">
-                            <div class="search-input-area">
-                                <div class="container">
-                                    <div class="search-input-inner">
-                                        <div class="input-div">
-                                            <input 
-                                            name=q
-                                            class="search-input"
-                                            type="text"
-                                            placeholder="Search by keyword or #" required
-                                            >
-                                        </div>
-                                        <div  class="search-close-icon"><i class="fa-regular btn"></i>
-                                         <button type="submit" class="search-icon-btn ">
-                    🔍
-                </button></div>
-                                    </div>
-                                </div>
-                                </form>
-                            </div>
-                            <div class="eblog-header-top-menu-bar menu-btn">
-                                <a href="javascript:void(0)">
-                                    <div class="line small"></div>
-                                    <div class="line big"></div>
-                                    <div class="line small"></div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-          <!-- rts breadcrumba area start -->
-    <div class="eblog-breadcrumb-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <!-- bread crumb inner wrapper -->
-                    <div class="breadcrumb-inner text-center">
-                        <div class="meta">
-                            <a href="{% url 'index'%}" class="prev">Home</a>
-                            <img src="{% static 'img/icon/chevron-right.svg' %}" alt="">
-                            <a href="{% url 'story:stories'%}" class="next">Stories</a>
-                            <img src="{% static 'img/icon/chevron-right.svg' %}" alt="">     
-                            <a href="{% url 'coming-soon'%}" class="last">Coming Soon</a>
-                            <img src="{% static 'img/icon/chevron-right.svg' %}" alt="">
-                            <a href="{% url 'error'%}" class="last">Errors</a>
+<div class="eblog-home-1-menu">
+<div class="eblog-site-main-logo-menu-social">
+<div class="container">
+<div class="row align-items-center plr_md--30 plr_sm--30 plr--10">
 
-                        </div>
-                    </div>
-                    <!-- bread crumb inner wrapper end -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- rts breadcrumba area end -->
-    </div>
-    <!-- End Home-1 Menu & Site Logo & Social Media -->
+<div class="col-xl-2 col-lg-2 col-md-7 col-sm-7 col-7 p-0">
+<div class="eblog-site-logo">
+<a href="{% url 'index' %}">
+<img src="{% static 'img/logo/header-logo.png' %}" alt="eblog">
+</a>
+</div>
+</div>
+
+<div class="col-xl-8 col-lg-8 d-none d-lg-block">
+<nav>
+<ul class="list-unstyled eblog-desktop-menu">
+
+<li class="menu-item">
+<a href="{% url 'index' %}">Home</a>
+</li>
+
+<li class="menu-item eblog-has-dropdown">
+<a href="{% url 'story:stories' %}" class="active">Stories</a>
+<ul class="eblog-submenu list-unstyled menu-pages">
+<li><a href="#">Latest Stories</a></li>
+<li><a href="#">Featured Stories</a></li>
+<li><a href="#">Popular Stories</a></li>
+</ul>
+</li>
+
+<li class="menu-item eblog-has-dropdown">
+<a href="#">News</a>
+<ul class="eblog-submenu list-unstyled menu-pages">
+<li><a href="#">Latest News</a></li>
+<li><a href="#">Transfer News</a></li>
+<li><a href="#">Match Reports</a></li>
+</ul>
+</li>
+
+<li class="menu-item eblog-has-dropdown">
+<a href="#">Fixtures &amp; Results</a>
+<ul class="eblog-submenu list-unstyled menu-pages">
+<li><a href="#">Today's Matches</a></li>
+<li><a href="#">Upcoming Fixtures</a></li>
+<li><a href="#">Past Results</a></li>
+</ul>
+</li>
+
+<li class="menu-item eblog-has-dropdown">
+<a href="#">Leagues</a>
+<ul class="eblog-submenu list-unstyled menu-pages">
+<li><a href="#">🏴‍🇬🇧 Premier League</a></li>
+<li><a href="#">🇪🇸 La Liga</a></li>
+<li><a href="#">🇮🇹 Serie A</a></li>
+<li><a href="#">🇩🇪 Bundesliga</a></li>
+<li><a href="#">🇫🇷 Ligue 1</a></li>
+<li><a href="#">🏆 Champions League</a></li>
+</ul>
+</li>
+
+<li class="menu-item eblog-has-dropdown">
+<a href="#">Teams</a>
+<ul class="eblog-submenu list-unstyled menu-pages">
+<li><a href="#">Team List</a></li>
+<li><a href="#">Team Profiles</a></li>
+</ul>
+</li>
+
+<li class="menu-item eblog-has-dropdown">
+<a href="#">Players</a>
+<ul class="eblog-submenu list-unstyled menu-pages">
+<li><a href="#">Top Players</a></li>
+<li><a href="#">Player Profiles</a></li>
+</ul>
+</li>
+
+<li class="menu-item eblog-has-dropdown">
+<a href="#">About</a>
+<ul class="eblog-submenu list-unstyled menu-pages">
+<li><a href="#">About Us</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
+</li>
+
+<li class="menu-item">
+<a href="{% url 'coming-soon' %}">Coming Soon</a>
+</li>
+
+<li class="menu-item">
+<a href="{% url 'error' %}">Errors</a>
+</li>
+
+</ul>
+</nav>
+</div>
+
+<div class="col-xl-2 col-lg-2 col-md-5 col-sm-5 col-5 p-0">
+<div class="eblog-header-top-social-media">
+
+<a href="javascript:void(0)" id="search" class="eblog-header-top-search-btn">
+<svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M18.1256 16.1458L13.4056 11.7888C14.5398 10.5319 15.1053 8.91973 14.9847 7.28771C14.864 5.65568 14.0663 4.12943 12.7576 3.02647C11.4488 1.9235 9.72983 1.32874 7.95814 1.3659C6.18645 1.40306 4.49849 2.06929 3.2454 3.226C1.9923 4.3827 1.27055 5.94082 1.23029 7.57622C1.19003 9.21162 1.83436 10.7984 3.02924 12.0064C4.22412 13.2145 5.87756 13.9508 7.64558 14.0622C9.41361 14.1736 11.1601 13.6516 12.5218 12.6046L17.2418 16.9616L18.1256 16.1458ZM2.50064 7.73083C2.50064 6.70389 2.83054 5.70001 3.44862 4.84614C4.0667 3.99227 4.94521 3.32676 5.97304 2.93376C7.00088 2.54077 8.13188 2.43795 9.22302 2.63829C10.3142 2.83864 11.3164 3.33316 12.1031 4.05931C12.8898 4.78547 13.4255 5.71065 13.6426 6.71786C13.8596 7.72507 13.7482 8.76907 13.3225 9.71784C12.8967 10.6666 12.1757 11.4775 11.2507 12.0481C10.3257 12.6186 9.23816 12.9231 8.12564 12.9231C6.6343 12.9216 5.20452 12.3741 4.14999 11.4007C3.09545 10.4272 2.50229 9.10745 2.50064 7.73083Z" fill="#1E1E1E"/>
+</svg>
+</a>
+
+<form action="{% url 'story:stories' %}" method="get" class="search-input-area" id="searchForm">
+<div class="container">
+<div class="search-input-inner">
+<div class="input-div">
+<input name="q" class="search-input" type="text" placeholder="Search by keyword or #" required>
+</div>
+<button type="submit" class="search-icon-btn">🔍</button>
+<div class="search-close-icon" id="searchClose">✕</div>
+</div>
+</div>
+</form>
+
+<div class="eblog-header-top-menu-bar menu-btn">
+<a href="javascript:void(0)" id="menuOpen">
+<div class="line small"></div>
+<div class="line big"></div>
+<div class="line small"></div>
+</a>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
 </header>
-<!-- End Top Header Area -->
 
-<!-- side bar for desktop -->
 <div id="side-bar" class="side-bar header-one">
-    <div class="inner">
-        <button class="close-icon-menu"><i class="far fa-times"></i></button>
-        <!-- inner menu area desktop start -->
-        <div class="inner-main-wrapper-desk d-none d-lg-block">
-            <div class="thumbnail">
-                <img src="{% static 'img/logo/logo-01-w.svg' %}" alt="eblog">
-            </div>
-            <div class="inner-content">
-                <div class="newsletter-form">
-                    <div class="form-inner">
-                        <div class="content">
-                            <h3 class="title mb--20">Get Newsletter</h3>
-                        </div>
-                        <form action="#">
-                            <div class="input-div">
-                                <input type="email" placeholder="Your email..." required>
-                            </div>
-                            <button type="submit" class="subscribe-btn">Subscribe Now</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- mobile menu area start -->
-    <div class="mobile-menu d-block d-lg-none">
-        <nav class="nav-main mainmenu-nav mt--30">
-            <ul class="mainmenu" id="mobile-menu-active">
-                <li class="has-droupdown">
-                    <a href="#" class="main">News</a>
-                    <ul class="submenu">
-                        <li><a class="mobile-menu-link" href="#">Latest News</a></li>
-                        <li><a class="mobile-menu-link" href="#">Transfer News</a></li>
-                        <li><a class="mobile-menu-link" href="#">Match Reports</a></li>
-                    </ul>
-                </li>
-                <li class="has-droupdown">
-                    <a href="#" class="main">Fixtures & Results</a>
-                    <ul class="submenu">
-                        <li><a class="mobile-menu-link" href="#">Today's Matches</a></li>
-                        <li><a class="mobile-menu-link" href="#">Upcoming Fixtures</a></li>
-                        <li><a class="mobile-menu-link" href="#">Past Results</a></li>
-                    </ul>
-                </li>
-                <li class="has-droupdown">
-                    <a href="#" class="main">Leagues</a>
-                    <ul class="submenu">
-                        <li><a class="mobile-menu-link" href="#">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</a></li>
-                        <li><a class="mobile-menu-link" href="#">🇪🇸 La Liga</a></li>
-                        <li><a class="mobile-menu-link" href="#">🇮🇹 Serie A</a></li>
-                        <li><a class="mobile-menu-link" href="#">🇩🇪 Bundesliga</a></li>
-                        <li><a class="mobile-menu-link" href="#">🇫🇷 Ligue 1</a></li>
-                        <li><a class="mobile-menu-link" href="#">🏆 Champions League</a></li>
-                    </ul>
-                </li>
-                <li class="has-droupdown">
-                    <a href="#" class="main">Teams</a>
-                    <ul class="submenu">
-                        <li><a class="mobile-menu-link" href="#">Team List</a></li>
-                        <li><a class="mobile-menu-link" href="#">Team Profiles</a></li>
-                    </ul>
-                </li>
-                <li class="has-droupdown">
-                    <a href="#" class="main">Players</a>
-                    <ul class="submenu">
-                        <li><a class="mobile-menu-link" href="#">Top Players</a></li>
-                        <li><a class="mobile-menu-link" href="#">Player Profiles</a></li>
-                    </ul>
-                </li>
-                <li class="has-droupdown">
-                    <a href="#" class="main">About</a>
-                    <ul class="submenu">
-                        <li><a class="mobile-menu-link" href="#">About Us</a></li>
-                        <li><a class="mobile-menu-link" href="#">Contact</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-    </div>
-    <!-- mobile menu area end -->
-</div>
-<!-- header style two End -->
+<div class="inner">
+<button class="close-icon-menu" id="menuClose" type="button">✕</button>
 
-<!-- Start Subscribe Popup Box -->
-<div class="eblog-popup-model" id="id01">
-    <div class="eblog-popup-transition">
-        <div class="model-content animate-subscribe-popup">
-            <a href="javascript:void(0)" onclick="document.getElementById('id01').style.display='none'"><i class="fa-regular fa-xmark"></i></a>
-            <div class="eblog-p-flexing">
-                <div class="form">
-                    <div class="eblog-p-sub-heading">
-                        <p>Weekly Updates</p>
-                    </div>
-                    <div class="eblog-p-sub-heading">
-                        <h3>Let's join our newsletter!</h3>
-                    </div>
-                    <form method="POST">
-                        <input type="email" required placeholder="Enter Your Email..">
-                        <button type="submit">Submit</button>
-                    </form>
-                    <div class="eblog-bottom-popup">
-                        <p>Do not worry we don't spam!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="inner-main-wrapper-desk d-none d-lg-block">
+<div class="thumbnail">
+<img src="{% static 'img/logo/logo-01-w.svg' %}" alt="eblog">
 </div>
-<!-- End Subscribe Popup Box -->
-<!-- End Header Area -->
-<!-- Start Breadcrumb Area -->
-  
-    <!-- End Breadcrumb Area -->
+<div class="inner-content">
+<div class="newsletter-form">
+<div class="form-inner">
+<div class="content">
+<h3 class="title mb--20">Get Newsletter</h3>
+</div>
+<form action="#">
+<div class="input-div">
+<input type="email" placeholder="Your email..." required>
+</div>
+<button type="submit" class="subscribe-btn">Subscribe Now</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+
+<div class="mobile-menu d-block d-lg-none">
+<nav class="nav-main mainmenu-nav mt--30">
+<ul class="mainmenu" id="mobile-menu-active">
+
+<li class="has-droupdown">
+<a href="javascript:void(0)" class="main">Home</a>
+</li>
+
+<li class="has-droupdown">
+<a href="{% url 'story:stories' %}" class="main">Stories</a>
+</li>
+
+<li class="has-droupdown">
+<a href="javascript:void(0)" class="main">News</a>
+<ul class="submenu">
+<li><a class="mobile-menu-link" href="#">Latest News</a></li>
+<li><a class="mobile-menu-link" href="#">Transfer News</a></li>
+<li><a class="mobile-menu-link" href="#">Match Reports</a></li>
+</ul>
+</li>
+
+<li class="has-droupdown">
+<a href="javascript:void(0)" class="main">Fixtures &amp; Results</a>
+<ul class="submenu">
+<li><a class="mobile-menu-link" href="#">Today's Matches</a></li>
+<li><a class="mobile-menu-link" href="#">Upcoming Fixtures</a></li>
+<li><a class="mobile-menu-link" href="#">Past Results</a></li>
+</ul>
+</li>
+
+<li class="has-droupdown">
+<a href="javascript:void(0)" class="main">Leagues</a>
+<ul class="submenu">
+<li><a class="mobile-menu-link" href="#">🏴‍🇬🇧 Premier League</a></li>
+<li><a class="mobile-menu-link" href="#">🇪🇸 La Liga</a></li>
+<li><a class="mobile-menu-link" href="#">🇮🇹 Serie A</a></li>
+<li><a class="mobile-menu-link" href="#">🇩🇪 Bundesliga</a></li>
+<li><a class="mobile-menu-link" href="#">🇫🇷 Ligue 1</a></li>
+<li><a class="mobile-menu-link" href="#">🏆 Champions League</a></li>
+</ul>
+</li>
+
+<li class="has-droupdown">
+<a href="javascript:void(0)" class="main">Teams</a>
+<ul class="submenu">
+<li><a class="mobile-menu-link" href="#">Team List</a></li>
+<li><a class="mobile-menu-link" href="#">Team Profiles</a></li>
+</ul>
+</li>
+
+<li class="has-droupdown">
+<a href="javascript:void(0)" class="main">Players</a>
+<ul class="submenu">
+<li><a class="mobile-menu-link" href="#">Top Players</a></li>
+<li><a class="mobile-menu-link" href="#">Player Profiles</a></li>
+</ul>
+</li>
+
+<li class="has-droupdown">
+<a href="javascript:void(0)" class="main">About</a>
+<ul class="submenu">
+<li><a class="mobile-menu-link" href="#">About Us</a></li>
+<li><a class="mobile-menu-link" href="#">Contact</a></li>
+</ul>
+</li>
+
+<li>
+<a href="{% url 'coming-soon' %}" class="main">Coming Soon</a>
+</li>
+
+<li>
+<a href="{% url 'error' %}" class="main">Errors</a>
+</li>
+
+</ul>
+</nav>
+</div>
+</div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+const searchButton=document.getElementById("search");
+const searchForm=document.getElementById("searchForm");
+const searchClose=document.getElementById("searchClose");
+const menuOpen=document.getElementById("menuOpen");
+const menuClose=document.getElementById("menuClose");
+const sidebar=document.getElementById("side-bar");
+
+if(searchButton)searchButton.addEventListener("click",function(e){
+e.preventDefault();
+searchForm.classList.add("active");
+const input=searchForm.querySelector(".search-input");
+if(input)setTimeout(()=>input.focus(),100);
+});
+
+if(searchClose)searchClose.addEventListener("click",function(){
+searchForm.classList.remove("active");
+});
+
+if(menuOpen)menuOpen.addEventListener("click",function(e){
+e.preventDefault();
+sidebar.classList.add("show");
+});
+
+if(menuClose)menuClose.addEventListener("click",function(){
+sidebar.classList.remove("show");
+});
+
+document.addEventListener("keydown",function(e){
+if(e.key==="Escape"){
+if(searchForm)searchForm.classList.remove("active");
+if(sidebar)sidebar.classList.remove("show");
+}
+});
+
+document.querySelectorAll("#mobile-menu-active>li.has-droupdown>a.main").forEach(function(item){
+item.addEventListener("click",function(e){
+const parent=this.parentElement;
+const href=this.getAttribute("href");
+if(href==="javascript:void(0)"){
+e.preventDefault();
+document.querySelectorAll("#mobile-menu-active>li.has-droupdown").forEach(function(li){
+if(li!==parent)li.classList.remove("mobile-open");
+});
+parent.classList.toggle("mobile-open");
+}
+});
+});
+
+document.addEventListener("click",function(e){
+if(sidebar&&sidebar.classList.contains("show")&&!sidebar.contains(e.target)&&!menuOpen.contains(e.target)){
+sidebar.classList.remove("show");
+}
+});
+});
+</script>
