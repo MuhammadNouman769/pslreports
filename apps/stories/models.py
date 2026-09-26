@@ -93,7 +93,7 @@ class Story(CoreModel):
         return self.author == user
     
     def get_absolute_url(self):
-        return reverse('story:blog_details', kwargs={'slug': self.slug})
+        return reverse('story:blog_detail', kwargs={'slug': self.slug})
     
     @property
     def is_published(self):
@@ -108,22 +108,38 @@ class StoryChapter(CoreModel):
     story = models.ForeignKey(Story, on_delete=models.CASCADE, related_name='chapters')
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, blank=True)
-    content =  RichTextUploadingField(max_length=1000)
-    image = models.ImageField(upload_to='chapter/%y/%m/%d',blank=True,null=True)
-    video = models.FileField(upload_to='chapter/%y/%m/%d',blank=True,null=True)
+    content = RichTextUploadingField(max_length=1000)
+    image = models.ImageField(upload_to='chapter/%y/%m/%d', blank=True, null=True)
+    video = models.FileField(upload_to='chapter/%y/%m/%d', blank=True, null=True)
     order = models.PositiveBigIntegerField(default=0)
-    
-    
+
     class Meta:
         ordering = ['order', 'created_at']
         constraints = [
-            models.UniqueConstraint(fields=['story','order'], name='unique_story_order')
+            models.UniqueConstraint(fields=['story', 'order'], name='unique_story_order')
         ]
-        
+
+    def _make_unique_slug(self):
+        base_slug = slugify(self.title) or 'chapter'
+        slug = base_slug
+        counter = 1
+        while StoryChapter.objects.filter(slug=slug).exclude(pk=self.pk).exists():
+            slug = f"{base_slug}-{counter}"
+            counter += 1
+        return slug
+
+    def clean(self):
+        super().clean()
+        if not self.slug:
+            self.slug = self._make_unique_slug()
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = self._make_unique_slug()
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return f'{self.story.title} - chapter {self.order}: {self.title}'
-    
-    
 """ ============== Story Like ============== """    
 class StoryLike(CoreModel):
     story = models.ForeignKey(Story, on_delete=models.CASCADE, related_name='story_like')

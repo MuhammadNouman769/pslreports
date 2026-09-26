@@ -5,7 +5,7 @@
     <div class="story-card">
         <div class="image-box">
             {% if story.image %}
-            <a href="{% url 'blog_detail' slug=story.slug %}">
+            <a href="{% url 'story:blog_detail' slug=story.slug %}">
                 <img src="{{ story.image.url }}" alt="{{ story.title }}">
             {% else %}
                 <img src="{% static 'img/default_story.jpg' %}">
@@ -23,7 +23,7 @@
                 {% endfor %}
             </div>
           <h4>
-            <a href="{% url 'blog_detail' slug=story.slug %}">
+            <a href="{% url 'story:blog_detail' slug=story.slug %}">
                 {{ story.title|striptags|truncatewords:12 }}
             </a>
         </h4>
